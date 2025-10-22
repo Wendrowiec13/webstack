@@ -1,0 +1,22 @@
+{
+    "configurations": [
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:webstack}",
+            "name": "Debug webstack",
+            "program": "${workspaceFolder:webstack}/.build/debug/webstack",
+            "preLaunchTask": "swift: Build Debug webstack"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:webstack}",
+            "name": "Release webstack",
+            "program": "${workspaceFolder:webstack}/.build/release/webstack",
+            "preLaunchTask": "swift: Build Release webstack"
+        }
+    ]
+}
