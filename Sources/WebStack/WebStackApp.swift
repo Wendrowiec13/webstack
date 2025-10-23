@@ -41,6 +41,7 @@ struct WebStackApp: App {
     @State private var webView: WebView
     @State private var isSidebarVisible: Bool = true
     @State private var sidebarWidth: CGFloat = 255
+    @FocusState private var isUrlFieldFocused: Bool
 
     init() {
         let m = WebViewModel()
@@ -110,29 +111,35 @@ struct WebStackApp: App {
 
                         // URL input with search icon
                         VStack(spacing: 12) {
-                            HStack(spacing: 8) {
-                                Image(systemName: "magnifyingglass")
-                                    .foregroundColor(.secondary)
-                                    .font(.system(size: 14))
-
-                                TextField("Enter URL", text: $model.urlString, onCommit: {
-                                    webView.load(model.urlString)
-                                })
-                                .textFieldStyle(.plain)
-                                .disableAutocorrection(true)
-                            }
+                            TextField("Enter URL", text: $model.urlString)
+                            .textFieldStyle(.plain)
+                            .disableAutocorrection(true)
                             .padding(.horizontal, 12)
                             .padding(.vertical, 8)
-                            .background(Color(nsColor: .controlBackgroundColor))
+                            .background(
+                                isUrlFieldFocused
+                                    ? Color(red: 0.98, green: 0.98, blue: 1.0)
+                                    : Color(red: 0.85, green: 0.92, blue: 0.98)
+                            )
                             .cornerRadius(8)
+                            .focused($isUrlFieldFocused)
+                            .animation(.easeInOut(duration: 0.2), value: isUrlFieldFocused)
+                            .onSubmit {
+                                webView.load(model.urlString)
+                                isUrlFieldFocused = false
+                            }
 
                             if model.isLoading {
                                 ProgressView(value: model.progress)
                             }
                         }
-                        .padding(12)
+                        .padding(6)
 
                         Spacer()
+                    }
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        isUrlFieldFocused = false
                     }
                     .padding(.leading, 6)
                     .padding(.top, 6)
@@ -187,6 +194,10 @@ struct WebStackApp: App {
                         .padding(.leading, isSidebarVisible ? 0 : 10)
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .contentShape(Rectangle())
+                .onTapGesture {
+                    isUrlFieldFocused = false
+                }
             }
             .ignoresSafeArea()
             .onAppear {
