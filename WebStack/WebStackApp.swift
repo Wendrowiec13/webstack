@@ -52,13 +52,21 @@ struct WebStackApp: App {
     var body: some Scene {
         WindowGroup {
             ZStack {
-                // Hidden button for keyboard shortcut
+                // Hidden button for keyboard shortcuts
                 Button("Copy URL", action: {
                     let pasteboard = NSPasteboard.general
                     pasteboard.clearContents()
                     pasteboard.setString(model.urlString, forType: .string)
                 })
                 .keyboardShortcut("c", modifiers: [.command, .shift])
+                .frame(width: 0, height: 0)
+                .opacity(0)
+
+                Button("New Tab", action: {
+                    model.createNewTab()
+                    isUrlFieldFocused = true
+                })
+                .keyboardShortcut("t", modifiers: .command)
                 .frame(width: 0, height: 0)
                 .opacity(0)
 
