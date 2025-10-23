@@ -1,6 +1,20 @@
 import SwiftUI
 import AppKit
 
+struct ResizeCursor: NSViewRepresentable {
+    func makeNSView(context: Context) -> CursorView {
+        return CursorView()
+    }
+
+    func updateNSView(_ nsView: CursorView, context: Context) {}
+
+    class CursorView: NSView {
+        override func resetCursorRects() {
+            addCursorRect(bounds, cursor: .resizeLeftRight)
+        }
+    }
+}
+
 final class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ notification: Notification) {
         NSApp.setActivationPolicy(.regular)
@@ -26,6 +40,7 @@ struct WebStackApp: App {
     @StateObject private var model = WebViewModel()
     @State private var webView: WebView
     @State private var isSidebarVisible: Bool = true
+    @State private var sidebarWidth: CGFloat = 255
 
     init() {
         let m = WebViewModel()
@@ -119,7 +134,10 @@ struct WebStackApp: App {
 
                         Spacer()
                     }
-                    .frame(width: 250)
+                    .padding(.leading, 6)
+                    .padding(.top, 6)
+                    .padding(.trailing, 6)
+                    .frame(width: sidebarWidth)
                     .background(
                         LinearGradient(
                             gradient: Gradient(colors: [
@@ -131,6 +149,23 @@ struct WebStackApp: App {
                         )
                     )
                     .transition(.move(edge: .leading))
+                    .overlay(
+                        ZStack {
+                            ResizeCursor()
+                            Rectangle()
+                                .fill(Color.clear)
+                        }
+                        .frame(width: 8)
+                        .contentShape(Rectangle())
+                        .gesture(
+                            DragGesture()
+                                .onChanged { value in
+                                    let newWidth = sidebarWidth + value.translation.width
+                                    sidebarWidth = min(max(newWidth, 200), 400)
+                                }
+                        ),
+                        alignment: .trailing
+                    )
                 }
 
                 // Main content area
