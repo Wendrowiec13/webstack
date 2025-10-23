@@ -11,6 +11,9 @@ let package = Package(
         .executableTarget(
             name: "WebStack",
             path: "Sources/WebStack",
+            resources: [
+                .process("WindowControls.xcassets")
+            ],
             linkerSettings: [
                 .linkedFramework("SwiftUI"),
                 .linkedFramework("AppKit"),
