@@ -20,14 +20,14 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         NSApp.setActivationPolicy(.regular)
         NSApp.activate(ignoringOtherApps: true)
 
-        // Hide the native window buttons
+        // Configure window appearance
         DispatchQueue.main.async {
             if let window = NSApp.windows.first {
-                window.standardWindowButton(.closeButton)?.isHidden = true
-                window.standardWindowButton(.miniaturizeButton)?.isHidden = true
-                window.standardWindowButton(.zoomButton)?.isHidden = true
-                window.titlebarAppearsTransparent = true
+                let customToolbar = NSToolbar()
+                // window.titlebarAppearsTransparent = true
                 window.titleVisibility = .hidden
+                window.toolbar = customToolbar
+                // Keep native buttons visible and functional
             }
         }
     }
@@ -41,6 +41,7 @@ struct WebStackApp: App {
     @State private var webView: WebView
     @State private var isSidebarVisible: Bool = true
     @State private var sidebarWidth: CGFloat = 255
+    @State private var isHoveringButtons: Bool = false
     @FocusState private var isUrlFieldFocused: Bool
 
     init() {
@@ -49,25 +50,65 @@ struct WebStackApp: App {
         _model = StateObject(wrappedValue: m)
     }
 
+    func updateWindowButtons(visible: Bool, hovering: Bool = false) {
+        DispatchQueue.main.async {
+            if let window = NSApp.windows.first {
+                // Only show buttons if sidebar is visible AND hovering
+                let shouldShow = visible && hovering
+
+                if let closeButton = window.standardWindowButton(.closeButton),
+                   let miniaturizeButton = window.standardWindowButton(.miniaturizeButton),
+                   let zoomButton = window.standardWindowButton(.zoomButton) {
+                    // if shouldShow {
+                    //     // Position buttons to respect sidebar padding (6pt top + 8pt vertical padding)
+                    //     let verticalOffset: CGFloat = 6 // 6
+                    //     let horizontalOffset: CGFloat = 14.0 // 6 + 8
+
+                    //     // Calculate positions with padding
+                    //     closeButton.frame.origin = CGPoint(x: horizontalOffset, y: verticalOffset)
+                    //     miniaturizeButton.frame.origin = CGPoint(x: horizontalOffset + 20, y: verticalOffset)
+                    //     zoomButton.frame.origin = CGPoint(x: horizontalOffset + 40, y: verticalOffset)
+                    // }
+
+                    // Set visibility
+                    closeButton.isHidden = !shouldShow
+                    miniaturizeButton.isHidden = !shouldShow
+                    zoomButton.isHidden = !shouldShow
+
+                    // Force redraw to show button icons
+                    if shouldShow {
+                        closeButton.needsDisplay = true
+                        miniaturizeButton.needsDisplay = true
+                        zoomButton.needsDisplay = true
+                    }
+                }
+            }
+        }
+    }
+
     var body: some Scene {
         WindowGroup {
             HStack(spacing: 0) {
                 // Sidebar
                 if isSidebarVisible {
                     VStack(spacing: 0) {
-                        // Top bar with macOS buttons, sidebar toggle, and navigation
+                        // Top bar with sidebar toggle and navigation
                         HStack(spacing: 8) {
-                            // macOS window buttons (placeholder spacing)
+                            // Space for native macOS window buttons
                             HStack(spacing: 8) {
                                 Circle()
-                                    .fill(Color.red.opacity(0.8))
+                                    .fill(Color(red: 0.85, green: 0.92, blue: 0.98))
                                     .frame(width: 12, height: 12)
                                 Circle()
-                                    .fill(Color.yellow.opacity(0.8))
+                                    .fill(Color(red: 0.85, green: 0.92, blue: 0.98))
                                     .frame(width: 12, height: 12)
                                 Circle()
-                                    .fill(Color.green.opacity(0.8))
+                                    .fill(Color(red: 0.85, green: 0.92, blue: 0.98))
                                     .frame(width: 12, height: 12)
+                            }
+                            .onHover { hovering in
+                                isHoveringButtons = hovering
+                                updateWindowButtons(visible: isSidebarVisible, hovering: hovering)
                             }
 
                             // Sidebar toggle button
@@ -75,6 +116,7 @@ struct WebStackApp: App {
                                 withAnimation(.easeInOut(duration: 0.25)) {
                                     isSidebarVisible.toggle()
                                 }
+                                updateWindowButtons(visible: isSidebarVisible, hovering: isHoveringButtons)
                             } label: {
                                 Image(systemName: "sidebar.left")
                                     .font(.system(size: 14))
@@ -201,15 +243,22 @@ struct WebStackApp: App {
             }
             .ignoresSafeArea()
             .onAppear {
+                // Set initial button visibility (hidden until hover)
+                updateWindowButtons(visible: isSidebarVisible, hovering: false)
+
                 NSEvent.addLocalMonitorForEvents(matching: .keyDown) { event in
                     if event.modifierFlags.contains(.command) && event.charactersIgnoringModifiers == "s" {
                         withAnimation(.easeInOut(duration: 0.25)) {
                             isSidebarVisible.toggle()
                         }
+                        updateWindowButtons(visible: isSidebarVisible, hovering: isHoveringButtons)
                         return nil
                     }
                     return event
                 }
+            }
+            .onChange(of: isSidebarVisible) { newValue in
+                updateWindowButtons(visible: newValue, hovering: isHoveringButtons)
             }
         }
         .windowStyle(.hiddenTitleBar)
