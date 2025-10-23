@@ -44,17 +44,10 @@ struct WebStackApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
     @StateObject private var model = WebViewModel()
-    @State private var webView: WebView
     @State private var isSidebarVisible: Bool = true
     @State private var sidebarWidth: CGFloat = 255
     @State private var isHoveringButtons: Bool = false
     @FocusState private var isUrlFieldFocused: Bool
-
-    init() {
-        let m = WebViewModel()
-        _webView = State(initialValue: WebView(model: m))
-        _model = StateObject(wrappedValue: m)
-    }
 
     var body: some Scene {
         WindowGroup {
@@ -114,7 +107,11 @@ struct WebStackApp: App {
 
                             // Navigation buttons
                             HoverButton(
-                                action: { webView.goBack() },
+                                action: {
+                                    if let activeTab = model.tabs.first(where: { $0.id == model.activeTabId }) {
+                                        activeTab.webView.goBack()
+                                    }
+                                },
                                 icon: "arrow.left",
                                 disabled: !model.canGoBack,
                                 top: 8,
@@ -125,7 +122,11 @@ struct WebStackApp: App {
                             )
 
                             HoverButton(
-                                action: { webView.goForward() },
+                                action: {
+                                    if let activeTab = model.tabs.first(where: { $0.id == model.activeTabId }) {
+                                        activeTab.webView.goForward()
+                                    }
+                                },
                                 icon: "arrow.right",
                                 disabled: !model.canGoForward,
                                 top: 8,
@@ -136,7 +137,15 @@ struct WebStackApp: App {
                             )
 
                             HoverButton(
-                                action: { model.isLoading ? webView.stopLoading() : webView.reload() },
+                                action: {
+                                    if let activeTab = model.tabs.first(where: { $0.id == model.activeTabId }) {
+                                        if model.isLoading {
+                                            activeTab.webView.stopLoading()
+                                        } else {
+                                            activeTab.webView.reload()
+                                        }
+                                    }
+                                },
                                 icon: model.isLoading ? "xmark.circle" : "arrow.clockwise",
                                 disabled: false,
                                 top: 6,
@@ -169,7 +178,12 @@ struct WebStackApp: App {
                             .focusEffectDisabled()
                             .animation(.easeInOut(duration: 0.2), value: isUrlFieldFocused)
                             .onSubmit {
-                                webView.load(model.urlString)
+                                if let activeTab = model.tabs.first(where: { $0.id == model.activeTabId }) {
+                                    guard var comps = URLComponents(string: model.urlString.trimmingCharacters(in: .whitespacesAndNewlines)) else { return }
+                                    if comps.scheme == nil { comps.scheme = "https" }
+                                    guard let url = comps.url else { return }
+                                    activeTab.webView.load(URLRequest(url: url))
+                                }
                                 isUrlFieldFocused = false
                             }
 
@@ -178,6 +192,33 @@ struct WebStackApp: App {
                             }
                         }
                         .padding(6)
+
+                        // Tabs section
+                        ScrollView {
+                            VStack(spacing: 4) {
+                                ForEach(model.tabs) { tab in
+                                    TabItemView(
+                                        tab: tab,
+                                        isActive: tab.id == model.activeTabId,
+                                        onSelect: {
+                                            model.switchToTab(id: tab.id)
+                                        },
+                                        onClose: {
+                                            model.closeTab(id: tab.id)
+                                        }
+                                    )
+                                }
+
+                                // New Tab button
+                                NewTabButton {
+                                    model.createNewTab()
+                                    isUrlFieldFocused = true
+                                }
+                                .padding(.top, 4)
+                            }
+                            .padding(.horizontal, 6)
+                            .padding(.vertical, 4)
+                        }
 
                         Spacer()
                     }
@@ -229,7 +270,7 @@ struct WebStackApp: App {
                         endPoint: .bottom
                     )
 
-                    webView
+                    WebView(model: model)
                         .clipShape(RoundedRectangle(cornerRadius: 8))
                         .shadow(color: .black.opacity(0.3), radius: 8, x: 0, y: 0)
                         .padding(.vertical, 10)
