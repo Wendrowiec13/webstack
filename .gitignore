@@ -10,6 +10,7 @@ xcuserdata/
 
 # Xcode - Build generated
 build/
+Build/
 DerivedData/
 *.pbxuser
 !default.pbxuser
