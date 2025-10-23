@@ -62,6 +62,12 @@ struct TabItemView: View {
                         ? Color(red: 0.85, green: 0.92, blue: 0.98)
                         : (isHovering ? Color.black.opacity(0.08) : Color.clear)
                 )
+                .shadow(
+                    color: isActive ? Color.black.opacity(0.08) : Color.clear,
+                    radius: 3,
+                    x: 0,
+                    y: 1
+                )
         )
         .overlay(
             RoundedRectangle(cornerRadius: 8)
