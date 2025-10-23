@@ -1,8 +1,49 @@
+# macOS
 .DS_Store
+.AppleDouble
+.LSOverride
+
+# Xcode - User-specific files
+xcuserdata/
+*.xcuserstate
+*.xcuserdatad
+
+# Xcode - Build generated
+build/
+DerivedData/
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+
+# Xcode - Other
+*.moved-aside
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# Swift Package Manager (keeping for compatibility)
 /.build
 /Packages
-xcuserdata/
-DerivedData/
 .swiftpm/configuration/registries.json
 .swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata
+
+# CocoaPods (if used in future)
+Pods/
+
+# Carthage (if used in future)
+Carthage/Build
+
+# fastlane (if used in future)
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output
+
+# Other
 .netrc

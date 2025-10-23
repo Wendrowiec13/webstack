@@ -1,0 +1,565 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7327824A2EAA92200069F828 /* WebStackIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 732782492EAA92200069F828 /* WebStackIcon.icon */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		73F5A5F42EAA8D9C006F3C2E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 73F5A5DD2EAA8D9A006F3C2E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 73F5A5E42EAA8D9A006F3C2E;
+			remoteInfo = WebStack;
+		};
+		73F5A5FE2EAA8D9C006F3C2E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 73F5A5DD2EAA8D9A006F3C2E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 73F5A5E42EAA8D9A006F3C2E;
+			remoteInfo = WebStack;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		732782492EAA92200069F828 /* WebStackIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = WebStackIcon.icon; sourceTree = "<group>"; };
+		73F5A5E52EAA8D9A006F3C2E /* WebStack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WebStack.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		73F5A5F32EAA8D9C006F3C2E /* WebStackTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WebStackTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		73F5A5FD2EAA8D9C006F3C2E /* WebStackUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WebStackUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		73F5A5E72EAA8D9A006F3C2E /* WebStack */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = WebStack;
+			sourceTree = "<group>";
+		};
+		73F5A5F62EAA8D9C006F3C2E /* WebStackTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = WebStackTests;
+			sourceTree = "<group>";
+		};
+		73F5A6002EAA8D9C006F3C2E /* WebStackUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = WebStackUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		73F5A5E22EAA8D9A006F3C2E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		73F5A5F02EAA8D9C006F3C2E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		73F5A5FA2EAA8D9C006F3C2E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		73F5A5DC2EAA8D9A006F3C2E = {
+			isa = PBXGroup;
+			children = (
+				73F5A5E72EAA8D9A006F3C2E /* WebStack */,
+				73F5A5F62EAA8D9C006F3C2E /* WebStackTests */,
+				73F5A6002EAA8D9C006F3C2E /* WebStackUITests */,
+				73F5A5E62EAA8D9A006F3C2E /* Products */,
+				732782492EAA92200069F828 /* WebStackIcon.icon */,
+			);
+			sourceTree = "<group>";
+		};
+		73F5A5E62EAA8D9A006F3C2E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				73F5A5E52EAA8D9A006F3C2E /* WebStack.app */,
+				73F5A5F32EAA8D9C006F3C2E /* WebStackTests.xctest */,
+				73F5A5FD2EAA8D9C006F3C2E /* WebStackUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		73F5A5E42EAA8D9A006F3C2E /* WebStack */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 73F5A6072EAA8D9C006F3C2E /* Build configuration list for PBXNativeTarget "WebStack" */;
+			buildPhases = (
+				73F5A5E12EAA8D9A006F3C2E /* Sources */,
+				73F5A5E22EAA8D9A006F3C2E /* Frameworks */,
+				73F5A5E32EAA8D9A006F3C2E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				73F5A5E72EAA8D9A006F3C2E /* WebStack */,
+			);
+			name = WebStack;
+			packageProductDependencies = (
+			);
+			productName = WebStack;
+			productReference = 73F5A5E52EAA8D9A006F3C2E /* WebStack.app */;
+			productType = "com.apple.product-type.application";
+		};
+		73F5A5F22EAA8D9C006F3C2E /* WebStackTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 73F5A60A2EAA8D9C006F3C2E /* Build configuration list for PBXNativeTarget "WebStackTests" */;
+			buildPhases = (
+				73F5A5EF2EAA8D9C006F3C2E /* Sources */,
+				73F5A5F02EAA8D9C006F3C2E /* Frameworks */,
+				73F5A5F12EAA8D9C006F3C2E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				73F5A5F52EAA8D9C006F3C2E /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				73F5A5F62EAA8D9C006F3C2E /* WebStackTests */,
+			);
+			name = WebStackTests;
+			packageProductDependencies = (
+			);
+			productName = WebStackTests;
+			productReference = 73F5A5F32EAA8D9C006F3C2E /* WebStackTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		73F5A5FC2EAA8D9C006F3C2E /* WebStackUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 73F5A60D2EAA8D9C006F3C2E /* Build configuration list for PBXNativeTarget "WebStackUITests" */;
+			buildPhases = (
+				73F5A5F92EAA8D9C006F3C2E /* Sources */,
+				73F5A5FA2EAA8D9C006F3C2E /* Frameworks */,
+				73F5A5FB2EAA8D9C006F3C2E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				73F5A5FF2EAA8D9C006F3C2E /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				73F5A6002EAA8D9C006F3C2E /* WebStackUITests */,
+			);
+			name = WebStackUITests;
+			packageProductDependencies = (
+			);
+			productName = WebStackUITests;
+			productReference = 73F5A5FD2EAA8D9C006F3C2E /* WebStackUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		73F5A5DD2EAA8D9A006F3C2E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1640;
+				LastUpgradeCheck = 1640;
+				TargetAttributes = {
+					73F5A5E42EAA8D9A006F3C2E = {
+						CreatedOnToolsVersion = 16.4;
+					};
+					73F5A5F22EAA8D9C006F3C2E = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = 73F5A5E42EAA8D9A006F3C2E;
+					};
+					73F5A5FC2EAA8D9C006F3C2E = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = 73F5A5E42EAA8D9A006F3C2E;
+					};
+				};
+			};
+			buildConfigurationList = 73F5A5E02EAA8D9A006F3C2E /* Build configuration list for PBXProject "WebStack" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 73F5A5DC2EAA8D9A006F3C2E;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 73F5A5E62EAA8D9A006F3C2E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				73F5A5E42EAA8D9A006F3C2E /* WebStack */,
+				73F5A5F22EAA8D9C006F3C2E /* WebStackTests */,
+				73F5A5FC2EAA8D9C006F3C2E /* WebStackUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		73F5A5E32EAA8D9A006F3C2E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7327824A2EAA92200069F828 /* WebStackIcon.icon in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		73F5A5F12EAA8D9C006F3C2E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		73F5A5FB2EAA8D9C006F3C2E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		73F5A5E12EAA8D9A006F3C2E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		73F5A5EF2EAA8D9C006F3C2E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		73F5A5F92EAA8D9C006F3C2E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		73F5A5F52EAA8D9C006F3C2E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 73F5A5E42EAA8D9A006F3C2E /* WebStack */;
+			targetProxy = 73F5A5F42EAA8D9C006F3C2E /* PBXContainerItemProxy */;
+		};
+		73F5A5FF2EAA8D9C006F3C2E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 73F5A5E42EAA8D9A006F3C2E /* WebStack */;
+			targetProxy = 73F5A5FE2EAA8D9C006F3C2E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		73F5A6052EAA8D9C006F3C2E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = RDJ8RMXV2U;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		73F5A6062EAA8D9C006F3C2E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = RDJ8RMXV2U;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		73F5A6082EAA8D9C006F3C2E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = WebStackIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = WebStack/WebStack.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = RDJ8RMXV2U;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = mateuszkelner.WebStack;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		73F5A6092EAA8D9C006F3C2E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = WebStackIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = WebStack/WebStack.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = RDJ8RMXV2U;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = mateuszkelner.WebStack;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		73F5A60B2EAA8D9C006F3C2E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = RDJ8RMXV2U;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = mateuszkelner.WebStackTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WebStack.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/WebStack";
+			};
+			name = Debug;
+		};
+		73F5A60C2EAA8D9C006F3C2E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = RDJ8RMXV2U;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = mateuszkelner.WebStackTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WebStack.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/WebStack";
+			};
+			name = Release;
+		};
+		73F5A60E2EAA8D9C006F3C2E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = RDJ8RMXV2U;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = mateuszkelner.WebStackUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = WebStack;
+			};
+			name = Debug;
+		};
+		73F5A60F2EAA8D9C006F3C2E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = RDJ8RMXV2U;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = mateuszkelner.WebStackUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = WebStack;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		73F5A5E02EAA8D9A006F3C2E /* Build configuration list for PBXProject "WebStack" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				73F5A6052EAA8D9C006F3C2E /* Debug */,
+				73F5A6062EAA8D9C006F3C2E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		73F5A6072EAA8D9C006F3C2E /* Build configuration list for PBXNativeTarget "WebStack" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				73F5A6082EAA8D9C006F3C2E /* Debug */,
+				73F5A6092EAA8D9C006F3C2E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		73F5A60A2EAA8D9C006F3C2E /* Build configuration list for PBXNativeTarget "WebStackTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				73F5A60B2EAA8D9C006F3C2E /* Debug */,
+				73F5A60C2EAA8D9C006F3C2E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		73F5A60D2EAA8D9C006F3C2E /* Build configuration list for PBXNativeTarget "WebStackUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				73F5A60E2EAA8D9C006F3C2E /* Debug */,
+				73F5A60F2EAA8D9C006F3C2E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 73F5A5DD2EAA8D9A006F3C2E /* Project object */;
+}

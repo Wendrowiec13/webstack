@@ -41,8 +41,7 @@ struct WindowControlButton: View {
     var body: some View {
         let imageName = (isHovered || isLocalHovered) ? "\(assetBaseName)-hover" : "\(assetBaseName)-normal"
         Group {
-            if let imageURL = loadImageURL(for: imageName),
-               let nsImage = NSImage(contentsOf: imageURL) {
+            if let nsImage = NSImage(named: imageName) {
                 Image(nsImage: nsImage)
                     .resizable()
                     .frame(width: buttonSize, height: buttonSize)
@@ -67,20 +66,6 @@ struct WindowControlButton: View {
                     performAction()
                 }
         )
-    }
-
-    private func loadImageURL(for imageName: String) -> URL? {
-        // Try the standard path first
-        if let url = Bundle.module.url(forResource: "WindowControls.xcassets/\(imageName).imageset/\(imageName)", withExtension: "svg") {
-            return url
-        }
-
-        // Handle special case for "close-hover" which has a different filename
-        if imageName == "close-hover" {
-            return Bundle.module.url(forResource: "WindowControls.xcassets/close-hover.imageset/Close Hover Icon", withExtension: "svg")
-        }
-
-        return nil
     }
 
     private func performAction() {
