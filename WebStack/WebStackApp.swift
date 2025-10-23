@@ -48,10 +48,17 @@ struct WebStackApp: App {
     @State private var sidebarWidth: CGFloat = 255
     @State private var isHoveringButtons: Bool = false
     @FocusState private var isUrlFieldFocused: Bool
+    @FocusState private var isDummyFocused: Bool
 
     var body: some Scene {
         WindowGroup {
             ZStack {
+                // Hidden focusable element to prevent URL field from auto-focusing
+                TextField("", text: .constant(""))
+                    .focused($isDummyFocused)
+                    .frame(width: 0, height: 0)
+                    .opacity(0)
+
                 // Hidden button for keyboard shortcuts
                 Button("Copy URL", action: {
                     let pasteboard = NSPasteboard.general
@@ -307,6 +314,10 @@ struct WebStackApp: App {
                     return event
                 }
             }
+            }
+            .onAppear {
+                // Focus dummy field on startup to prevent URL field from auto-focusing
+                isDummyFocused = true
             }
         }
         .windowStyle(.hiddenTitleBar)

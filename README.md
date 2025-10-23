@@ -5,11 +5,13 @@ A minimal macOS web browser built with SwiftUI and WebKit..
 ## Features
 
 - **Clean Interface**: Distraction-free browsing with a transparent titlebar and custom window controls
-- **Resizable Sidebar**: Adjustable sidebar with navigation controls and URL input
+- **Resizable Sidebar**: Adjustable, collapsible sidebar with vertical tabs navigation controls and URL input
 - **Keyboard Shortcuts**:
   - `Cmd+S` - Toggle sidebar visibility
   - `Cmd+Shift+C` - Copy current URL to clipboard
-- **Navigation Controls**: Back, forward, and reload buttons with hover effects
+  - `Cmd+T` - New tab
+- **Navigation Controls**: Back, forward, and reload buttons
+- **Persistent Tabs**: Close the browser and come back to your tabs
 
 ## Requirements
 

@@ -2,6 +2,14 @@ import SwiftUI
 import WebKit
 import Combine
 
+// Codable structure for persisting tab data
+struct TabData: Codable {
+    let id: UUID
+    let urlString: String
+    let pageTitle: String
+    let faviconData: Data?
+}
+
 struct Tab: Identifiable {
     let id: UUID
     var urlString: String
@@ -9,15 +17,21 @@ struct Tab: Identifiable {
     var favicon: NSImage?
     let webView: WKWebView
 
-    init(urlString: String = "") {
-        self.id = UUID()
+    init(urlString: String = "", id: UUID = UUID(), pageTitle: String = "") {
+        self.id = id
         self.urlString = urlString
-        self.pageTitle = ""
+        self.pageTitle = pageTitle
         self.favicon = nil
 
         let config = WKWebViewConfiguration()
         config.allowsAirPlayForMediaPlayback = true
         self.webView = WKWebView(frame: .zero, configuration: config)
+    }
+
+    // Convert Tab to TabData for persistence
+    func toData() -> TabData {
+        let faviconData = favicon?.tiffRepresentation
+        return TabData(id: id, urlString: urlString, pageTitle: pageTitle, faviconData: faviconData)
     }
 }
 
@@ -33,14 +47,84 @@ final class WebViewModel: ObservableObject {
     @Published var progress: Double = 0.0
     @Published var pageTitle: String = ""
 
+    private let tabsKey = "SavedTabs"
+    private let activeTabKey = "ActiveTabId"
+
     init() {
-        createNewTab()
+        loadTabs()
+    }
+
+    // Save tabs to UserDefaults
+    func saveTabs() {
+        let tabsData = tabs.map { $0.toData() }
+        if let encoded = try? JSONEncoder().encode(tabsData) {
+            UserDefaults.standard.set(encoded, forKey: tabsKey)
+        }
+        if let activeTabId = activeTabId {
+            UserDefaults.standard.set(activeTabId.uuidString, forKey: activeTabKey)
+        }
+    }
+
+    // Load tabs from UserDefaults
+    private func loadTabs() {
+        guard let data = UserDefaults.standard.data(forKey: tabsKey),
+              let tabsData = try? JSONDecoder().decode([TabData].self, from: data),
+              !tabsData.isEmpty else {
+            // No saved tabs, create a new one
+            createNewTab()
+            return
+        }
+
+        // Restore tabs from saved data
+        for tabData in tabsData {
+            var tab = Tab(urlString: tabData.urlString, id: tabData.id, pageTitle: tabData.pageTitle)
+
+            // Restore favicon if available
+            if let faviconData = tabData.faviconData,
+               let favicon = NSImage(data: faviconData) {
+                tab.favicon = favicon
+            }
+
+            tabs.append(tab)
+
+            // Load the URL in the webview
+            if !tabData.urlString.isEmpty {
+                guard var comps = URLComponents(string: tabData.urlString.trimmingCharacters(in: .whitespacesAndNewlines)) else { continue }
+                if comps.scheme == nil { comps.scheme = "https" }
+                guard let url = comps.url else { continue }
+                tab.webView.load(URLRequest(url: url))
+            }
+        }
+
+        // Restore active tab (don't call switchToTab to avoid saving immediately)
+        if let activeTabIdString = UserDefaults.standard.string(forKey: activeTabKey),
+           let activeId = UUID(uuidString: activeTabIdString),
+           let tab = tabs.first(where: { $0.id == activeId }) {
+            activeTabId = activeId
+            urlString = tab.urlString
+            pageTitle = tab.pageTitle
+            // Don't restore loading state on startup - let it update naturally
+            canGoBack = false
+            canGoForward = false
+            isLoading = false
+            progress = 0.0
+        } else if let firstTab = tabs.first {
+            activeTabId = firstTab.id
+            urlString = firstTab.urlString
+            pageTitle = firstTab.pageTitle
+            // Don't restore loading state on startup - let it update naturally
+            canGoBack = false
+            canGoForward = false
+            isLoading = false
+            progress = 0.0
+        }
     }
 
     func createNewTab(urlString: String = "") {
         let newTab = Tab(urlString: urlString.isEmpty ? "" : urlString)
         tabs.append(newTab)
         switchToTab(id: newTab.id)
+        saveTabs()
     }
 
     func closeTab(id: UUID) {
@@ -55,8 +139,10 @@ final class WebViewModel: ObservableObject {
             } else {
                 // No tabs left, create a new one
                 createNewTab()
+                return // saveTabs() will be called by createNewTab
             }
         }
+        saveTabs()
     }
 
     func switchToTab(id: UUID) {
@@ -70,22 +156,31 @@ final class WebViewModel: ObservableObject {
         canGoForward = tab.webView.canGoForward
         isLoading = tab.webView.isLoading
         progress = tab.webView.estimatedProgress
+        saveTabs()
     }
 
     func updateActiveTab(urlString: String? = nil, pageTitle: String? = nil, favicon: NSImage? = nil) {
         guard let activeTabId = activeTabId,
               let index = tabs.firstIndex(where: { $0.id == activeTabId }) else { return }
 
+        var needsSave = false
         if let urlString = urlString {
             tabs[index].urlString = urlString
             self.urlString = urlString
+            needsSave = true
         }
         if let pageTitle = pageTitle {
             tabs[index].pageTitle = pageTitle
             self.pageTitle = pageTitle
+            needsSave = true
         }
         if let favicon = favicon {
             tabs[index].favicon = favicon
+            needsSave = true
+        }
+
+        if needsSave {
+            saveTabs()
         }
     }
 }
