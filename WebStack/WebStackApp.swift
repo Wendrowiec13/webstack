@@ -58,6 +58,17 @@ struct WebStackApp: App {
 
     var body: some Scene {
         WindowGroup {
+            ZStack {
+                // Hidden button for keyboard shortcut
+                Button("Copy URL", action: {
+                    let pasteboard = NSPasteboard.general
+                    pasteboard.clearContents()
+                    pasteboard.setString(model.urlString, forType: .string)
+                })
+                .keyboardShortcut("c", modifiers: [.command, .shift])
+                .frame(width: 0, height: 0)
+                .opacity(0)
+
             HStack(spacing: 0) {
                 // Sidebar
                 if isSidebarVisible {
@@ -233,14 +244,19 @@ struct WebStackApp: App {
             .ignoresSafeArea()
             .onAppear {
                 NSEvent.addLocalMonitorForEvents(matching: .keyDown) { event in
-                    if event.modifierFlags.contains(.command) && event.charactersIgnoringModifiers == "s" {
+                    let flags = event.modifierFlags.intersection(.deviceIndependentFlagsMask)
+
+                    // Cmd+S to toggle sidebar
+                    if flags == .command && event.charactersIgnoringModifiers == "s" {
                         withAnimation(.easeInOut(duration: 0.25)) {
                             isSidebarVisible.toggle()
                         }
                         return nil
                     }
+
                     return event
                 }
+            }
             }
         }
         .windowStyle(.hiddenTitleBar)
