@@ -166,6 +166,7 @@ struct WebStackApp: App {
                             )
                             .cornerRadius(8)
                             .focused($isUrlFieldFocused)
+                            .focusEffectDisabled()
                             .animation(.easeInOut(duration: 0.2), value: isUrlFieldFocused)
                             .onSubmit {
                                 webView.load(model.urlString)
