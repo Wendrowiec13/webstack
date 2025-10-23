@@ -63,7 +63,7 @@ struct WebStackApp: App {
                 if isSidebarVisible {
                     VStack(spacing: 0) {
                         // Top bar with sidebar toggle and navigation
-                        HStack(spacing: 8) {
+                        HStack(spacing: 4) {
                             // Window control buttons - show placeholders or custom controls based on hover
                             ZStack {
                                 // Placeholder buttons (shown when not hovering)
@@ -84,42 +84,61 @@ struct WebStackApp: App {
                             }
 
                             // Sidebar toggle button
-                            Button {
-                                withAnimation(.easeInOut(duration: 0.25)) {
-                                    isSidebarVisible.toggle()
-                                }
-                            } label: {
-                                Image(systemName: "sidebar.left")
-                                    .font(.system(size: 14))
-                            }
-                            .buttonStyle(.plain)
+                            HoverButton(
+                                action: {
+                                    withAnimation(.easeInOut(duration: 0.25)) {
+                                        isSidebarVisible.toggle()
+                                    }
+                                },
+                                icon: "sidebar.left",
+                                disabled: false,
+                                top: 8,
+                                leading: 6,
+                                bottom: 8,
+                                trailing: 6,
+                                fontSize: 15
+                            )
 
                             Spacer()
 
                             // Navigation buttons
-                            Button { webView.goBack() } label: {
-                                Image(systemName: "arrow.left")
-                                    .font(.system(size: 14))
-                            }
-                            .buttonStyle(.plain)
-                            .disabled(!model.canGoBack)
+                            HoverButton(
+                                action: { webView.goBack() },
+                                icon: "arrow.left",
+                                disabled: !model.canGoBack,
+                                top: 8,
+                                leading: 6,
+                                bottom: 8,
+                                trailing: 6,
+                                fontSize: 16
+                            )
 
-                            Button { webView.goForward() } label: {
-                                Image(systemName: "arrow.right")
-                                    .font(.system(size: 14))
-                            }
-                            .buttonStyle(.plain)
-                            .disabled(!model.canGoForward)
+                            HoverButton(
+                                action: { webView.goForward() },
+                                icon: "arrow.right",
+                                disabled: !model.canGoForward,
+                                top: 8,
+                                leading: 6,
+                                bottom: 8,
+                                trailing: 6,
+                                fontSize: 16
+                            )
 
-                            Button {
-                                model.isLoading ? webView.stopLoading() : webView.reload()
-                            } label: {
-                                Image(systemName: model.isLoading ? "xmark.circle" : "arrow.clockwise")
-                                    .font(.system(size: 14))
-                            }
-                            .buttonStyle(.plain)
+                            HoverButton(
+                                action: { model.isLoading ? webView.stopLoading() : webView.reload() },
+                                icon: model.isLoading ? "xmark.circle" : "arrow.clockwise",
+                                disabled: false,
+                                top: 6,
+                                leading: 8,
+                                bottom: 6,
+                                trailing: 8,
+                                fontSize: 16
+                            )
                         }
-                        .padding(8)
+                        .padding(.top, 8)
+                        .padding(.bottom, 8)
+                        .padding(.leading, 8)
+                        .padding(.trailing, 4)
                         .background(Color(red: 0.9, green: 0.95, blue: 1.0))
 
                         // URL input with search icon
@@ -155,7 +174,6 @@ struct WebStackApp: App {
                         isUrlFieldFocused = false
                     }
                     .padding(.leading, 6)
-                    .padding(.top, 6)
                     .padding(.trailing, 6)
                     .frame(width: sidebarWidth)
                     .background(
